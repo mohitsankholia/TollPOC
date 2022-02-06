@@ -1,8 +1,11 @@
-import Create from "./form"
+// import Create from "./form"
+
+import List from './list'
 const App=()=>{
   return(
       <>
-       <Create/> 
+       {/* <Create/>  */}
+       <List/>
       </>
   );
 }
