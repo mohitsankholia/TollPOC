@@ -28,5 +28,12 @@ public class TollServices {
 	{
 		return repo.findById(id).orElse(new TollDetails());
 	}
+	
+	public String eraseOne(String id)
+	{
+		String name=readOne(id).getVehicleNo()+" "+" has deleted\n";
+		repo.deleteById(id);
+		return name;
+	}
 
 }

@@ -16,3 +16,8 @@ export const oneAtTime=async(param)=>{
     const tmp = await axios.get(`${url}/${param}`)
     return tmp
 }
+
+export const terminate=async(param)=>{
+    const t = await axios.delete(`${url}/remove/${param}`)
+    return t
+}

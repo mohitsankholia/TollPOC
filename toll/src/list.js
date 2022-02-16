@@ -1,9 +1,9 @@
 import React, {useEffect, useState } from "react";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Create from './form'
-import {oneAtTime, traverse } from "./api";
+import {oneAtTime, terminate, traverse } from "./api";
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import EditIcon from '@mui/icons-material/Edit';
+// import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
 import Read from "./read";
 
@@ -43,32 +43,40 @@ export const List=()=>{
         setObj(hey.data)
     }
 
+    const abort=async(par)=>{
+        const yet=await terminate(par)
+        alert(yet.data)
+        window.location.assign("http://localhost:3000")
+    }
+
     return(
         <>
             <>
             {(cview)?
             <>
                 <Create/>
-                <button className="btn btn-outline-dark" 
-                onClick={()=>setCview(false)}>
-                    Back
-                </button>
+                <div  className="text-center mt-1">
+                    <button className="btn btn-outline-dark" 
+                    onClick={()=>setCview(false)}>
+                        Back
+                    </button>
+                </div>
             </>
             :
             (rview)?
             <>
                 <Read corp={obj}/>
-                <button className="btn btn-outline-dark" 
-                onClick={()=>setRview(false)}>
-                    Back
-                </button>
+                <div  className="text-center mt-1">
+                    <button className="btn btn-outline-dark" 
+                    onClick={()=>setRview(false)}>
+                        Back
+                    </button>
+                </div>
             </>
             :
             <>
-            <button className="btn btn-outline-success" onClick={()=>setCview(true)}>
-                form
-            </button>
-            <div className="row justify-content-center">
+            
+            <div className="row justify-content-center mt-2">
                 <div className="col-lg-8 col-md-10 col-sm-12 table-responsive">
                     <table className="table table-stripped table-hover shodow text-light bg-info">
                         <thead>
@@ -92,11 +100,18 @@ export const List=()=>{
                                         }}>
                                         {data.vehicleNo}
                                     </td>
+                                    
                                     <td>
                                         {data.ownername}
                                     </td>
-                                    <td>{data.id}</td>
-                                    <td>{data.balance}</td>
+                                    
+                                    <td>
+                                        {data.id}
+                                    </td>
+                                    
+                                    <td>
+                                        {data.balance}
+                                    </td>
                                    
                                     <td>
                                         {data.vendor}
@@ -105,20 +120,31 @@ export const List=()=>{
                                     <td>
                                         {data.transaction}
                                     </td>
+                                    
                                     <td>
-                                        <Button color="error" className="btn btn-outline-danger">
+                                        <Button color="error" className="btn btn-outline-danger" 
+                                        onClick={
+                                            ()=>{abort(data.vehicleNo)}}>
+                                            
                                             <RemoveCircleIcon/>
                                         </Button>
                                     </td>
-                                    <td>
+                                    {/* <td>
                                         <Button color="warning" className="btn btn-outline-warning">
                                             <EditIcon/>
                                         </Button>
-                                    </td>
+                                    
+                                    </td> */}
                                 </tr>
                             ))}
                         </tbody>
+                        
                     </table>
+                    <div  className="text-center mt-1">
+                        <button className=" btn btn-outline-success" onClick={()=>setCview(true)}>
+                            New Entry
+                        </button>
+                    </div>
                 </div>
             </div>
             </>

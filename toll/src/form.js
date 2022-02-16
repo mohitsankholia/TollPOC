@@ -38,11 +38,11 @@ const Create=()=>{
     return(
         <>
             <div className="mt-3 container" >
-                <h5 className="display-4 text-center text-info">Fill this New Form</h5>
+                <h5 className="display-4 text-center text-info">Fill the Details</h5>
                 <div className="row justify-content-center">
                     <div className="col-lg-6 col-md-8 col-sm-12 shadow-lg p-3">
                         <div>
-                        <TextField 
+                        <TextField className="row mt-3"
                             required
                             id="outlined-required"
                             label="Vehicle No" 
@@ -51,7 +51,7 @@ const Create=()=>{
                             value={data.vehicleNo}
                          /> 
 
-                        <TextField className="ms-3"
+                        <TextField className="ms-3 row mt-3"
                             required
                             id="filled-required"
                             label="Owner Name"
